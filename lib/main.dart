@@ -1,7 +1,3 @@
-// Copyright 2019 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'dart:async';
 import 'dart:io';
 
@@ -10,12 +6,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
-// Toggle this to cause an async error to be thrown during initialization
-// and to test that runZonedGuarded() catches the error
 const _kShouldTestAsyncErrorOnInit = false;
 
-// Toggle this for testing Crashlytics in your app locally.
+
 const _kTestingCrashlytics = true;
 //ignore: avoid_void_async
 void main() async {
@@ -43,7 +36,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  // Define an async function to initialize FlutterFire
+  
   Future<void> _initializeFlutterFire() async {
     // Wait for Firebase to initialize
 
