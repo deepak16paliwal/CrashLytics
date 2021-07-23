@@ -2,21 +2,35 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:crashlyticsexample/Screens/HomeScreens/home.dart';
+import 'package:crashlyticsexample/redux/store.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
 const _kShouldTestAsyncErrorOnInit = false;
 
 
 const _kTestingCrashlytics = true;
 //ignore: avoid_void_async
 void main() async {
+  var store = await createStore();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
   runZonedGuarded(() {
-    runApp(MyApp());
+    runApp(
+      StoreProvider(
+       store: store,
+       child:
+      //  MyApp()
+      MaterialApp(
+        home: Home(),
+      )
+    )
+      );
   }, FirebaseCrashlytics.instance.recordError);
 }
 
